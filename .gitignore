@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.pyo
+~$*.docx
+.DS_Store
+Thumbs.db
+report/
+pipeline/generate_assets.py
+pipeline/generate_report.py

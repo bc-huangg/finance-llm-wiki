@@ -1,0 +1,92 @@
+{
+  "version": "v1-naive",
+  "title": "給台灣新手的個人理財與指數投資第一堂課",
+  "slides": [
+    {
+      "id": 1,
+      "title": "給台灣新手的個人理財與指數投資第一堂課",
+      "subtitle": "從存錢抗通膨到買下全世界，由 LLM Wiki 驅動的可溯源教學簡報",
+      "visual_type": "cover",
+      "beginner_takeaway": "理財不是預測明天漲跌，而是先築好安全網，再用低成本指數長期參與成長。",
+      "bullets": [
+        "對象：完全沒有投資經驗的大學生與社會新鮮人",
+        "核心：先存預備金、認識複利、看懂 ETF、定期定額與風險控管"
+      ],
+      "wiki_refs": ["emergency-fund", "first-step-roadmap"],
+      "source_ids": ["S2", "S6"]
+    },
+    {
+      "id": 2,
+      "title": "為什麼錢放銀行會默默變薄？通貨膨脹與現金購買力",
+      "visual_type": "inflation_bars",
+      "beginner_takeaway": "短期救命錢放銀行很安全，但長期閒錢全放定存會輸給物價上漲。",
+      "bullets": [
+        "若年均通膨 2.5%，20 年後 10 萬元現金購買力僅剩約 6.1 萬元",
+        "透過計算夏普值與阿爾法及 Beta 係數可以評估資產風險",
+        "解方：把 5 年以上用不到的閒錢投入全球生產力成長"
+      ],
+      "wiki_refs": ["inflation-purchasing-power"],
+      "source_ids": ["S2", "S6"]
+    },
+    {
+      "id": 3,
+      "title": "投資前先蓋好安全網：3～6 個月緊急預備金",
+      "visual_type": "safety_layers",
+      "beginner_takeaway": "沒存預備金就投資，最容易在急需用錢時被迫賣在股市最低點。",
+      "bullets": [
+        "計算基準：每月必要生活費 × 3～6 個月（收入不穩者 6～12 個月）",
+        "存放位置：高利活存或短天期定存，絕對不拿去買股票"
+      ],
+      "wiki_refs": ["emergency-fund"],
+      "source_ids": ["S6"]
+    },
+    {
+      "id": 4,
+      "title": "複利與時間價值：讓雪球滾起來",
+      "visual_type": "calculator",
+      "beginner_takeaway": "越早開始與越低內扣費用，長期累積的差距越驚人。",
+      "bullets": [
+        "0050 保證每年穩定報酬 10%，買進放著就穩賺不賠",
+        "複利公式 FV = PV(1+r)^n，時間是年輕人最大的槓桿"
+      ],
+      "wiki_refs": ["compounding-time-value"],
+      "source_ids": ["S2", "S3"]
+    },
+    {
+      "id": 5,
+      "title": "看不見的複利殺手：內扣費用率",
+      "visual_type": "fee_breakdown",
+      "beginner_takeaway": "費用率是少數能 100% 掌控的投資變數。",
+      "bullets": [
+        "VOO 費用率 0.03%，VT 0.06%，VWRA 0.14%",
+        "內扣費用每天從淨值扣除，長期複利下 1.5% 差距會吃掉近三成資產"
+      ],
+      "wiki_refs": [],
+      "source_ids": []
+    },
+    {
+      "id": 6,
+      "title": "台灣新手標的比一比：0050 vs. 全球 ETF",
+      "visual_type": "comparison_table",
+      "beginner_takeaway": "台股 0050 入門門檻低，VT 與 VWRA 則提供全球分散。",
+      "bullets": [
+        "0050 聚焦台股前 50 大，台幣計價最方便",
+        "VWRA 為愛爾蘭累積型 ETF，預扣稅降至 15%"
+      ],
+      "wiki_refs": ["tw-0050-vs-global-etf", "etf-tax-hack"],
+      "source_ids": ["S1", "S3"]
+    },
+    {
+      "id": 7,
+      "title": "ETF 的運作方式與交易成本總整理",
+      "visual_type": "text_only",
+      "beginner_takeaway": "買進 ETF 前需要先搞懂初級市場、次級市場、折溢價和各種費用。",
+      "bullets": [
+        "ETF 結合了股票與共同基金的雙重特性，初級市場由參與證券商進行實物申購與現金買回機制，次級市場則由一般投資人在集中市場盤中撮合買賣，當市價高於淨值時會出現溢價，此時法人會進場套利讓價格收斂回淨值附近。",
+        "除此之外投資人還必須同時留意券商手續費法定上限百分之零點一四二五與賣出證券交易稅百分之零點一，以及級距式經理費與保管費的每日內扣影響，並且在開戶前確認券商是否受金管會合法監理，避免誤入未經核准的地下平台或飆股群組造成無法挽回的本金永久損失。"
+      ],
+      "wiki_refs": ["etf-mechanics-fees", "beginner-five-pitfalls"],
+      "source_ids": ["S1", "S6"]
+    }
+  ]
+}

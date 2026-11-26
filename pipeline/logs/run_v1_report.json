@@ -1,0 +1,77 @@
+{
+  "mode": "v1",
+  "timestamp": "2026-11-26 22:22:26",
+  "status": "FAILED",
+  "total_errors": 6,
+  "gates": [
+    {
+      "gate": "Gate 1: Ingest Quality Gate",
+      "passed": true,
+      "wiki_pages_checked": 17,
+      "raw_sources_count": 6,
+      "valid_wiki_ids": [
+        "active-vs-passive",
+        "asset-allocation",
+        "beginner-five-pitfalls",
+        "compounding-time-value",
+        "dca-and-rebalancing",
+        "emergency-fund",
+        "etf-mechanics-fees",
+        "first-step-roadmap",
+        "inflation-purchasing-power",
+        "source-S1",
+        "source-S2",
+        "source-S3",
+        "source-S4",
+        "source-S5",
+        "source-S6",
+        "tw-0050-vs-global-etf",
+        "volatility-vs-permanent-loss"
+      ],
+      "errors": []
+    },
+    {
+      "gate": "Post-Audit (Late Check)",
+      "passed": false,
+      "slides_checked": 7,
+      "errors": [
+        {
+          "gate": "Post-Audit (Late Check)",
+          "code": "JARGON_UNEXPLAINED",
+          "slide_id": 2,
+          "detail": "出現未白話解釋的進階術語：夏普值, Beta 係數, 阿爾法"
+        },
+        {
+          "gate": "Post-Audit (Late Check)",
+          "code": "GROUNDING_ERROR",
+          "slide_id": 4,
+          "detail": "包含未經來源證實的保證報酬宣稱「保證每年」，與 Wiki 風險事實矛盾"
+        },
+        {
+          "gate": "Post-Audit (Late Check)",
+          "code": "GROUNDING_ERROR",
+          "slide_id": 4,
+          "detail": "包含未經來源證實的保證報酬宣稱「穩賺不賠」，與 Wiki 風險事實矛盾"
+        },
+        {
+          "gate": "Post-Audit (Late Check)",
+          "code": "CITATION_MISSING",
+          "slide_id": 5,
+          "detail": "缺少 wiki_refs 或 source_ids 溯源標籤"
+        },
+        {
+          "gate": "Post-Audit (Late Check)",
+          "code": "BROKEN_WIKILINK",
+          "slide_id": 6,
+          "detail": "引用不存在的 Wiki 條目「etf-tax-hack」"
+        },
+        {
+          "gate": "Post-Audit (Late Check)",
+          "code": "DENSITY_OVERFLOW",
+          "slide_id": 7,
+          "detail": "單頁正文達 221 字（上限 220 字），新手閱讀負荷過高"
+        }
+      ]
+    }
+  ]
+}

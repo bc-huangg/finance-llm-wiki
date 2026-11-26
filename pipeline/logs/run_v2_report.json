@@ -1,0 +1,54 @@
+{
+  "mode": "v2",
+  "timestamp": "2026-11-26 22:22:26",
+  "status": "PASSED",
+  "total_errors": 0,
+  "build_info": {
+    "wiki_pages_count": 17,
+    "slides_count": 12,
+    "index_bytes": 76710,
+    "slides_bytes": 41285
+  },
+  "gates": [
+    {
+      "gate": "Gate 1: Ingest Quality Gate",
+      "passed": true,
+      "wiki_pages_checked": 17,
+      "raw_sources_count": 6,
+      "valid_wiki_ids": [
+        "active-vs-passive",
+        "asset-allocation",
+        "beginner-five-pitfalls",
+        "compounding-time-value",
+        "dca-and-rebalancing",
+        "emergency-fund",
+        "etf-mechanics-fees",
+        "first-step-roadmap",
+        "inflation-purchasing-power",
+        "source-S1",
+        "source-S2",
+        "source-S3",
+        "source-S4",
+        "source-S5",
+        "source-S6",
+        "tw-0050-vs-global-etf",
+        "volatility-vs-permanent-loss"
+      ],
+      "errors": []
+    },
+    {
+      "gate": "Gate 2: Outline Grounding Gate",
+      "passed": true,
+      "slides_checked": 12,
+      "errors": []
+    },
+    {
+      "gate": "Gate 3: Static Site Render Gate",
+      "passed": true,
+      "slides_rendered": 12,
+      "index_html_bytes": 76403,
+      "slides_html_bytes": 40676,
+      "errors": []
+    }
+  ]
+}

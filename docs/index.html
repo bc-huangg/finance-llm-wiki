@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>個人理財與指數投資入門 — LLM Wiki 知識庫</title>
+  <style>
+    :root {
+      --bg: #FAF9F6;
+      --surface: #FFFFFF;
+      --navy: #14213D;
+      --emerald: #0F766E;
+      --emerald-soft: #E6F4F1;
+      --amber: #D97706;
+      --amber-soft: #FEF3C7;
+      --ink: #1F2937;
+      --muted: #6B7280;
+      --border: #E5E7EB;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.72;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--navy);
+      color: #fff;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 2px 10px rgba(20, 33, 61, 0.14);
+    }
+    .brand { display: flex; flex-direction: column; }
+    .brand-title { font-size: 1.08rem; font-weight: 700; letter-spacing: 0.02em; }
+    .brand-sub { font-size: 0.78rem; color: #CBD5E1; }
+    .cta-btn {
+      background: var(--emerald);
+      color: #fff;
+      text-decoration: none;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: background 0.15s ease;
+    }
+    .cta-btn:hover { background: #0D625B; }
+    .layout {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 28px;
+      padding: 24px;
+      align-items: start;
+    }
+    aside {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      position: sticky;
+      top: 82px;
+      max-height: calc(100vh - 106px);
+      overflow-y: auto;
+    }
+    .search-box {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      margin-bottom: 14px;
+      background: var(--bg);
+    }
+    .nav-group { margin-bottom: 14px; }
+    .nav-group-title {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin: 8px 0 6px 6px;
+    }
+    .nav-item {
+      display: block;
+      padding: 7px 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.88rem;
+      line-height: 1.4;
+      margin-bottom: 2px;
+    }
+    .nav-item:hover { background: #F3F4F6; }
+    .nav-item.active {
+      background: var(--emerald-soft);
+      color: var(--emerald);
+      font-weight: 700;
+    }
+    main {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 38px;
+      min-height: 75vh;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+    }
+    .meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .cat-pill {
+      background: var(--navy);
+      color: #fff;
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+    .tag-pill {
+      background: #F3F4F6;
+      color: #374151;
+      font-size: 0.76rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+    .source-pill {
+      background: var(--amber-soft);
+      color: #92400E;
+      text-decoration: none;
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+    .summary-callout {
+      background: var(--emerald-soft);
+      border-left: 4px solid var(--emerald);
+      padding: 12px 16px;
+      border-radius: 0 10px 10px 0;
+      margin: 14px 0 24px 0;
+      font-size: 0.96rem;
+      color: #0F4C46;
+    }
+    article h1 { font-size: 1.85rem; color: var(--navy); margin: 0 0 12px 0; line-height: 1.3; }
+    article h2 { font-size: 1.25rem; color: var(--navy); margin-top: 26px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+    article h3 { font-size: 1.05rem; color: var(--emerald); margin-top: 18px; }
+    article table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 0.92rem; }
+    article th, article td { border: 1px solid var(--border); padding: 9px 12px; text-align: left; }
+    article th { background: #F8FAFC; color: var(--navy); }
+    .wikilink {
+      background: var(--emerald-soft);
+      color: var(--emerald);
+      text-decoration: none;
+      padding: 1px 6px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.92em;
+    }
+    .wikilink:hover { text-decoration: underline; }
+    .wikilink.broken { background: #FEE2E2; color: #B91C1C; }
+    .cite-badge {
+      color: var(--amber);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.85em;
+      margin-left: 2px;
+    }
+    .backlinks-box {
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px dashed var(--border);
+    }
+    .backlinks-title { font-size: 0.92rem; font-weight: 700; color: var(--muted); margin-bottom: 10px; }
+    .backlinks-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .backlink-chip {
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      color: var(--navy);
+      text-decoration: none;
+      padding: 5px 11px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+    .backlink-chip:hover { border-color: var(--emerald); color: var(--emerald); }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      aside { position: static; max-height: none; }
+      main { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="brand-title">個人理財與指數投資入門 — LLM Wiki</div>
+      <div class="brand-sub">台灣新手視角 · 6 篇公開來源 · 17 篇知識條目</div>
+    </div>
+    <a class="cta-btn" href="./slides.html">開啟教學 HTML 簡報（12 頁） →</a>
+  </header>
+
+  <div class="layout">
+    <aside>
+      <input id="searchInput" class="search-box" type="search" placeholder="搜尋 Wiki 條目或關鍵字..." />
+      <div id="sidebarNav"></div>
+    </aside>
+    <main>
+      <div id="articleContainer"></div>
+    </main>
+  </div>
+
+  <script>
+    const WIKI_PAGES = [{"id": "index", "title": "知識庫總目錄（Wiki Index）", "category": "meta", "category_label": "知識庫導覽", "summary": "瀏覽個人理財與指數投資入門 LLM Wiki 的四大模組與 6 篇權威來源。", "sources": ["S1", "S2", "S3", "S4", "S5", "S6"], "updated": "2026-11-26", "tags": ["總目錄", "導覽"], "path": "index.md", "outlinks": [], "backlinks": [], "html": "<h1>知識庫總目錄（Wiki Index）</h1>\n<p>本知識庫聚焦於 <strong>「個人理財與指數投資入門（台灣新手視角）」</strong>，共收錄 <strong>6 篇權威原始來源（<code>raw/</code>）</strong> 與 <strong>17 篇結構化 Wiki 條目（11 篇概念條目 ＋ 6 篇來源摘要）</strong>。</p>\n<h2>模組一：財務基石（Foundations）</h2>\n<ul>\n<li><a href=\"#emergency-fund\" class=\"wikilink\" data-target=\"emergency-fund\">[[emergency-fund]]</a> — 緊急預備金：投資前先存妥 3–6 個月必要生活費於高流動性保本帳戶。</li>\n<li><a href=\"#inflation-purchasing-power\" class=\"wikilink\" data-target=\"inflation-purchasing-power\">[[inflation-purchasing-power]]</a> — 通貨膨脹與購買力：解釋為何現金放銀行會隨時間實質縮水。</li>\n<li><a href=\"#compounding-time-value\" class=\"wikilink\" data-target=\"compounding-time-value\">[[compounding-time-value]]</a> — 複利與時間價值：利滾利雪球效應、時間槓桿與費用侵蝕。</li>\n</ul>\n<h2>模組二：指數與 ETF 原理（Instruments）</h2>\n<ul>\n<li><a href=\"#active-vs-passive\" class=\"wikilink\" data-target=\"active-vs-passive\">[[active-vs-passive]]</a> — 主動 vs. 被動指數投資：SPIVA 15 年 90.49% 主動基金落後大盤之實證。</li>\n<li><a href=\"#etf-mechanics-fees\" class=\"wikilink\" data-target=\"etf-mechanics-fees\">[[etf-mechanics-fees]]</a> — ETF 運作機制與費用解析：初級／次級市場、折溢價套利與內外扣費用。</li>\n<li><a href=\"#tw-0050-vs-global-etf\" class=\"wikilink\" data-target=\"tw-0050-vs-global-etf\">[[tw-0050-vs-global-etf]]</a> — 台灣新手標的對照：0050 vs. VOO / VT / VWRA 費用率與稅務比較。</li>\n</ul>\n<h2>模組三：新手實作策略（Strategies）</h2>\n<ul>\n<li><a href=\"#asset-allocation\" class=\"wikilink\" data-target=\"asset-allocation\">[[asset-allocation]]</a> — 資產配置與股債比例：Bogleheads 三基金架構與 80/20、60/40 配置原則。</li>\n<li><a href=\"#dca-and-rebalancing\" class=\"wikilink\" data-target=\"dca-and-rebalancing\">[[dca-and-rebalancing]]</a> — 定期定額與再平衡：用新資金補齊低配部位與 5/25 門檻法則。</li>\n</ul>\n<h2>模組四：風險與行為防線（Risk &amp; Action）</h2>\n<ul>\n<li><a href=\"#volatility-vs-permanent-loss\" class=\"wikilink\" data-target=\"volatility-vs-permanent-loss\">[[volatility-vs-permanent-loss]]</a> — 波動不等於永久虧損：分辨暫時回檔與真正的本金永久損失。</li>\n<li><a href=\"#beginner-five-pitfalls\" class=\"wikilink\" data-target=\"beginner-five-pitfalls\">[[beginner-five-pitfalls]]</a> — 台灣新手 5 大誤區與防詐原則：金管會合法管道與投保中心（SFIPC）。</li>\n<li><a href=\"#first-step-roadmap\" class=\"wikilink\" data-target=\"first-step-roadmap\">[[first-step-roadmap]]</a> — 台灣新手 5 步行動清單：今晚就能執行的指數投資起手式。</li>\n</ul>\n<h2>來源摘要頁（Sources）</h2>\n<ul>\n<li><a href=\"#source-S1\" class=\"wikilink\" data-target=\"source-S1\">[[source-S1]]</a> — 臺灣證券交易所 ETF 專區 &amp; 0050 公開資訊（<code>raw/S1-twse-etf-0050.md</code>）</li>\n<li><a href=\"#source-S2\" class=\"wikilink\" data-target=\"source-S2\">[[source-S2]]</a> — SEC Investor.gov 複利與指數基金指南（<code>raw/S2-investor-gov-compounding.md</code>）</li>\n<li><a href=\"#source-S3\" class=\"wikilink\" data-target=\"source-S3\">[[source-S3]]</a> — Vanguard 費用率研究與 VOO / VT / VWRA（<code>raw/S3-vanguard-cost-global-etf.md</code>）</li>\n<li><a href=\"#source-S4\" class=\"wikilink\" data-target=\"source-S4\">[[source-S4]]</a> — S&amp;P Dow Jones Indices SPIVA U.S. Scorecard（<code>raw/S4-spiva-active-vs-passive.md</code>）</li>\n<li><a href=\"#source-S5\" class=\"wikilink\" data-target=\"source-S5\">[[source-S5]]</a> — Bogleheads 投資哲學、三基金與再平衡（<code>raw/S5-bogleheads-allocation-rebalancing.md</code>）</li>\n<li><a href=\"#source-S6\" class=\"wikilink\" data-target=\"source-S6\">[[source-S6]]</a> — 台灣新手安全網、定期定額與金管會／投保中心（<code>raw/S6-tw-safety-net-dca-fsc.md</code>）</li>\n</ul>"}, {"id": "compounding-time-value", "title": "複利與時間價值：讓雪球滾起來的關鍵槓桿", "category": "foundations", "category_label": "一、財務基石", "summary": "複利是「利滾利」的指數級成長，時間越長、費用越低且股息再投入，後期累積的報酬越能遠超本金。", "sources": ["S2", "S3"], "updated": "2026-11-26", "tags": ["財務基石", "複利", "時間價值"], "path": "wiki/foundations/compounding-time-value.md", "outlinks": ["etf-mechanics-fees", "inflation-purchasing-power", "source-S2", "source-S3"], "backlinks": [{"id": "inflation-purchasing-power", "title": "通貨膨脹與購買力：為什麼錢放銀行會默默變薄？"}, {"id": "etf-mechanics-fees", "title": "ETF 運作機制與費用解析：看懂市價、淨值與內扣費用率"}, {"id": "source-S2", "title": "來源摘要 S2：SEC Investor.gov 複利與指數基金指南"}, {"id": "source-S3", "title": "來源摘要 S3：Vanguard 費用率研究與全球 ETF（VOO / VT / VWRA）"}], "html": "<h1>複利與時間價值：讓雪球滾起來的關鍵槓桿</h1>\n<p>美國證交會（SEC Investor.gov）將<strong>複利（Compound Interest / Compound Returns）</strong>比喻為滾雪球：當投資產生的利息、股息或資本利得留在帳戶中繼續投資，下一年的成長就會建立在「原始本金＋累積收益」的總和之上 <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a>。</p>\n<h2>1. 複利的核心公式</h2>\n<p>$$FV = PV \\times (1 + r)^n$$</p>\n<p>其中 $PV$ 為期初本金、$r$ 為年化報酬率、$n$ 為投資年數 <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a>。由於指數 $n$ 位於次方項，<strong>「時間」是投資人手中最強大的槓桿</strong> <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a>：</p>\n<ul>\n<li><strong>早點開始勝過存一大筆再開始</strong>：25 歲開始每月定期投入小額資金，往往比 35 歲才開始投入雙倍金額更有優勢，因為多出了 10 年的指數級加速期 <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a>。</li>\n<li><strong>股息再投入（Dividend Reinvestment）</strong>：將 ETF 配發的股息自動買回更多單位數，能讓雪球體積持續擴大，不會因現金閒置而中斷複利 <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a><a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a>。</li>\n</ul>\n<h2>2. 複利的敵人：高內扣費用</h2>\n<p>複利不僅會放大報酬，也會反過來放大<strong>費用侵蝕</strong> <a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a>。Vanguard 的研究指出，若兩檔基金年化報酬同為 7%，一檔收 0.1% 費用率、另一檔收 1.5% 費用率，經過 30 年複利後，高費用基金的最終資產會少掉將近三分之一 <a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a>。想看更詳細的費用結構比較，請見 <a href=\"#etf-mechanics-fees\" class=\"wikilink\" data-target=\"etf-mechanics-fees\">[[etf-mechanics-fees]]</a>。</p>\n<hr />\n<p><strong>延伸閱讀</strong>：<a href=\"#inflation-purchasing-power\" class=\"wikilink\" data-target=\"inflation-purchasing-power\">[[inflation-purchasing-power]]</a> · <a href=\"#etf-mechanics-fees\" class=\"wikilink\" data-target=\"etf-mechanics-fees\">[[etf-mechanics-fees]]</a> · <a href=\"#source-S2\" class=\"wikilink\" data-target=\"source-S2\">[[source-S2]]</a> · <a href=\"#source-S3\" class=\"wikilink\" data-target=\"source-S3\">[[source-S3]]</a></p>"}, {"id": "emergency-fund", "title": "緊急預備金：投資前必築的第一道安全網", "category": "foundations", "category_label": "一、財務基石", "summary": "投資前先存妥 3 至 6 個月必要生活費於高流動性保本帳戶，避免突發事件迫使你在股市低點認賠賣出。", "sources": ["S6"], "updated": "2026-11-26", "tags": ["財務基石", "緊急預備金", "風險控管"], "path": "wiki/foundations/emergency-fund.md", "outlinks": ["volatility-vs-permanent-loss", "dca-and-rebalancing", "inflation-purchasing-power", "first-step-roadmap", "source-S6"], "backlinks": [{"id": "inflation-purchasing-power", "title": "通貨膨脹與購買力：為什麼錢放銀行會默默變薄？"}, {"id": "beginner-five-pitfalls", "title": "台灣新手最常踩的 5 大投資誤區與防詐原則"}, {"id": "first-step-roadmap", "title": "台灣新手 5 步行動清單：今晚就能開始的指數投資起手式"}, {"id": "volatility-vs-permanent-loss", "title": "波動不等於永久虧損：建立承受市場回檔的心理防線"}, {"id": "source-S6", "title": "來源摘要 S6：台灣新手安全網、定期定額與金管會／投保中心保護"}], "html": "<h1>緊急預備金：投資前必築的第一道安全網</h1>\n<p>許多新手一領到薪水就急著買股票，卻忽略了投資最忌諱「急需用錢時被迫賣在最低點」<a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。因此在投入任何波動性資產之前，必須先建立緊急預備金（Emergency Fund）<a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</p>\n<h2>1. 要存多少才夠？</h2>\n<p>計算基準是<strong>「每月必要生活費」</strong>（房租、伙食、保險、交通與基本帳單），而非全額月薪 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>：</p>\n<ul>\n<li><strong>一般受薪族</strong>：準備 <strong>3 至 6 個月</strong>必要生活費 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。例如每月必要支出 NT$25,000，預備金目標即為 NT$75,000 至 NT$150,000。</li>\n<li><strong>收入不穩定者（接案、業務、待業轉職期）</strong>：建議拉高至 <strong>6 至 12 個月</strong> <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</li>\n</ul>\n<h2>2. 該放在哪裡？</h2>\n<p>緊急預備金的唯一任務是「隨時拿得到、本金不會縮水」，因此應存放在高流動性且保本的帳戶，例如銀行活存、數位帳戶高利活存或可隨時解約的短天期定存 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。<strong>絕對不可將預備金拿去買股票、ETF 或加密貨幣</strong> <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</p>\n<h2>3. 與長期投資的關係</h2>\n<p>備妥預備金後，你才能把真正「3 至 5 年以上用不到的閒錢」投入指數型 ETF，面對市場下跌時才有底氣堅持 <a href=\"#volatility-vs-permanent-loss\" class=\"wikilink\" data-target=\"volatility-vs-permanent-loss\">[[volatility-vs-permanent-loss]]</a> 的長期紀律，並安心執行 <a href=\"#dca-and-rebalancing\" class=\"wikilink\" data-target=\"dca-and-rebalancing\">[[dca-and-rebalancing]]</a>。</p>\n<hr />\n<p><strong>延伸閱讀</strong>：<a href=\"#inflation-purchasing-power\" class=\"wikilink\" data-target=\"inflation-purchasing-power\">[[inflation-purchasing-power]]</a> · <a href=\"#first-step-roadmap\" class=\"wikilink\" data-target=\"first-step-roadmap\">[[first-step-roadmap]]</a> · <a href=\"#source-S6\" class=\"wikilink\" data-target=\"source-S6\">[[source-S6]]</a></p>"}, {"id": "inflation-purchasing-power", "title": "通貨膨脹與購買力：為什麼錢放銀行會默默變薄？", "category": "foundations", "category_label": "一、財務基石", "summary": "當銀行定存利率低於物價上漲速度，現金的實質購買力會隨時間逐年縮水，這正是長期投資的根本動機。", "sources": ["S2", "S6"], "updated": "2026-11-26", "tags": ["財務基石", "通貨膨脹", "購買力"], "path": "wiki/foundations/inflation-purchasing-power.md", "outlinks": ["emergency-fund", "compounding-time-value", "source-S2"], "backlinks": [{"id": "compounding-time-value", "title": "複利與時間價值：讓雪球滾起來的關鍵槓桿"}, {"id": "emergency-fund", "title": "緊急預備金：投資前必築的第一道安全網"}, {"id": "source-S2", "title": "來源摘要 S2：SEC Investor.gov 複利與指數基金指南"}, {"id": "source-S6", "title": "來源摘要 S6：台灣新手安全網、定期定額與金管會／投保中心保護"}, {"id": "asset-allocation", "title": "資產配置與股債比例：決定長期風險與睡得著覺的關鍵"}], "html": "<h1>通貨膨脹與購買力：為什麼錢放銀行會默默變薄？</h1>\n<p>「把錢全部放銀行定存最安全」是新手最常見的直覺，但這忽略了<strong>通貨膨脹（Inflation）</strong>對實質購買力的長期侵蝕 <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a><a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</p>\n<h2>1. 名目金額 vs. 實質購買力</h2>\n<p>假設你今天把 NT$100,000 放進活存，20 年後帳面上依然是 10 萬元（甚至加上微薄利息變成 12 萬元），但若每年平均物價上漲 2.5%，20 年後原本 10 萬元能買到的商品與服務，將需要約 16.4 萬元才買得到——換句話說，現金的<strong>實質購買力縮水了將近 40%</strong>。</p>\n<h2>2. 保本與購買力風險的權衡</h2>\n<ul>\n<li><strong>短期資金（<a href=\"#emergency-fund\" class=\"wikilink\" data-target=\"emergency-fund\">[[emergency-fund]]</a>）</strong>：需要的是高流動性與「名目本金不虧損」，放銀行高利活存完全正確 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</li>\n<li><strong>長期閒置資金（5 年以上不動用）</strong>：若全數留在低利率現金中，幾乎確定會輸給通膨，這也是一種隱形的「確定性虧損」。</li>\n</ul>\n<h2>3. 解方：讓資產參與全球經濟成長</h2>\n<p>透過低成本指數基金持有全球企業股權，長期而言企業營收與獲利會隨通膨與生產力提升而成長，進而啟動 <a href=\"#compounding-time-value\" class=\"wikilink\" data-target=\"compounding-time-value\">[[compounding-time-value]]</a> 的正向雪球效應 <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a>。</p>\n<hr />\n<p><strong>延伸閱讀</strong>：<a href=\"#compounding-time-value\" class=\"wikilink\" data-target=\"compounding-time-value\">[[compounding-time-value]]</a> · <a href=\"#emergency-fund\" class=\"wikilink\" data-target=\"emergency-fund\">[[emergency-fund]]</a> · <a href=\"#source-S2\" class=\"wikilink\" data-target=\"source-S2\">[[source-S2]]</a></p>"}, {"id": "active-vs-passive", "title": "主動投資 vs. 被動指數投資：SPIVA 實證數據怎麼說？", "category": "instruments", "category_label": "二、指數與 ETF 原理", "summary": "SPIVA 統計顯示 15 年期有 90.49% 的主動型美國大型股基金落後大盤，低成本被動追蹤反而是多數人的最佳解。", "sources": ["S2", "S4"], "updated": "2026-11-26", "tags": ["指數原理", "主被動比較", "SPIVA"], "path": "wiki/instruments/active-vs-passive.md", "outlinks": ["etf-mechanics-fees", "tw-0050-vs-global-etf", "source-S4"], "backlinks": [{"id": "source-S2", "title": "來源摘要 S2：SEC Investor.gov 複利與指數基金指南"}, {"id": "source-S4", "title": "來源摘要 S4：S&P Dow Jones Indices — SPIVA U.S. Scorecard"}], "html": "<h1>主動投資 vs. 被動指數投資：SPIVA 實證數據怎麼說？</h1>\n<p>許多新手會想：「我花錢請專業基金經理人幫我挑好股票，報酬應該會比買大盤更好吧？」標普道瓊指數公司定期發布的 <strong>SPIVA U.S. Scorecard</strong> 用長期數據給出了截然不同的答案 <a href=\"#source-S4\" class=\"cite-badge\" title=\"查看來源 S4\">[S4]</a>。</p>\n<h2>1. 什麼是指數投資（被動投資）？</h2>\n<ul>\n<li><strong>主動投資</strong>：由經理人主觀研究財報、預測景氣與頻繁買賣個股，目標是「打敗大盤」，但通常伴隨高昂的經理費與交易成本 <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a><a href=\"#source-S4\" class=\"cite-badge\" title=\"查看來源 S4\">[S4]</a>。</li>\n<li><strong>被動指數投資</strong>：不預測哪一間公司會贏，而是依照公開指數（如台灣 50 指數、S&amp;P 500 或全球全市場指數）的權重買進一籃子股票，目標是<strong>「穩穩取得市場平均報酬」</strong> <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a>。</li>\n</ul>\n<h2>2. SPIVA 實證：長期打敗大盤有多難？</h2>\n<p>根據 SPIVA U.S. Scorecard 統計，與 S&amp;P 500 指數相比，主動管理型美國大型股基金的落後比例隨時間拉長而節節攀升 <a href=\"#source-S4\" class=\"cite-badge\" title=\"查看來源 S4\">[S4]</a>：</p>\n<table>\n<thead>\n<tr>\n<th style=\"text-align: left;\">觀察期間</th>\n<th style=\"text-align: left;\">落後 S&amp;P 500 的主動基金比例</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align: left;\">10 年期</td>\n<td style=\"text-align: left;\"><strong>83%–86%</strong> <a href=\"#source-S4\" class=\"cite-badge\" title=\"查看來源 S4\">[S4]</a></td>\n</tr>\n<tr>\n<td style=\"text-align: left;\">15 年期</td>\n<td style=\"text-align: left;\"><strong>90.49%</strong> <a href=\"#source-S4\" class=\"cite-badge\" title=\"查看來源 S4\">[S4]</a></td>\n</tr>\n<tr>\n<td style=\"text-align: left;\">20 年期</td>\n<td style=\"text-align: left;\"><strong>超過 92%</strong> <a href=\"#source-S4\" class=\"cite-badge\" title=\"查看來源 S4\">[S4]</a></td>\n</tr>\n</tbody>\n</table>\n<h2>3. 為什麼連華爾街專家都常輸給指數？</h2>\n<ol>\n<li><strong>費用與交易磨損</strong>：主動基金高額內扣費與頻繁換股的手續費、稅負，讓它在起跑線上就先落後指數 <a href=\"#source-S4\" class=\"cite-badge\" title=\"查看來源 S4\">[S4]</a>。</li>\n<li><strong>倖存者偏差</strong>：表現太差的主動基金往往被清算或合併，若只看市場上還活著的基金，會誤以為專家很厲害；SPIVA 已將這些陣亡基金全數納入分母 <a href=\"#source-S4\" class=\"cite-badge\" title=\"查看來源 S4\">[S4]</a>。</li>\n</ol>\n<p>因此，對沒有時間整天研究財報的上班族與學生而言，選擇低成本的 <a href=\"#etf-mechanics-fees\" class=\"wikilink\" data-target=\"etf-mechanics-fees\">[[etf-mechanics-fees]]</a> 追蹤全市場指數，在統計上擁有遠高於主動選股的勝率 <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a><a href=\"#source-S4\" class=\"cite-badge\" title=\"查看來源 S4\">[S4]</a>。</p>\n<hr />\n<p><strong>延伸閱讀</strong>：<a href=\"#etf-mechanics-fees\" class=\"wikilink\" data-target=\"etf-mechanics-fees\">[[etf-mechanics-fees]]</a> · <a href=\"#tw-0050-vs-global-etf\" class=\"wikilink\" data-target=\"tw-0050-vs-global-etf\">[[tw-0050-vs-global-etf]]</a> · <a href=\"#source-S4\" class=\"wikilink\" data-target=\"source-S4\">[[source-S4]]</a></p>"}, {"id": "etf-mechanics-fees", "title": "ETF 運作機制與費用解析：看懂市價、淨值與內扣費用率", "category": "instruments", "category_label": "二、指數與 ETF 原理", "summary": "ETF 結合股票交易彈性與基金分散性，透過初級與次級市場套利維持價格貼近淨值，挑選時須特別留意內扣費用率。", "sources": ["S1", "S3"], "updated": "2026-11-26", "tags": ["指數原理", "ETF機制", "費用率"], "path": "wiki/instruments/etf-mechanics-fees.md", "outlinks": ["compounding-time-value", "tw-0050-vs-global-etf", "source-S1", "source-S3"], "backlinks": [{"id": "compounding-time-value", "title": "複利與時間價值：讓雪球滾起來的關鍵槓桿"}, {"id": "active-vs-passive", "title": "主動投資 vs. 被動指數投資：SPIVA 實證數據怎麼說？"}, {"id": "tw-0050-vs-global-etf", "title": "台灣新手標的對照：0050 vs. 全球 ETF（VT / VWRA / VOO）"}, {"id": "beginner-five-pitfalls", "title": "台灣新手最常踩的 5 大投資誤區與防詐原則"}, {"id": "source-S1", "title": "來源摘要 S1：臺灣證券交易所 ETF 專區與 0050 公開資訊"}, {"id": "source-S3", "title": "來源摘要 S3：Vanguard 費用率研究與全球 ETF（VOO / VT / VWRA）"}], "html": "<h1>ETF 運作機制與費用解析：看懂市價、淨值與內扣費用率</h1>\n<p><strong>ETF（Exchange Traded Fund，指數股票型基金）</strong> 同時具備「像股票一樣在盤中買賣」與「像共同基金一樣一次買進一籃子標的」兩大優點 <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a>。</p>\n<h2>1. 雙市場運作與折溢價套利機制</h2>\n<p>臺灣證券交易所將 ETF 交易拆分為兩個層次，並靠法人套利維持價格合理 <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a>：</p>\n<ol>\n<li><strong>初級市場（發行與申贖）</strong>：僅限機構法人或參與證券商（AP）直接向投信公司以一籃子成分股進行實物（或現金）申購與買回 <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a>。</li>\n<li><strong>次級市場（一般投資人買賣）</strong>：我們在券商 App 下單買賣現有 ETF 單位，成交價受買賣供需影響，稱為<strong>市價</strong> <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a>。</li>\n<li><strong>折溢價自動收斂</strong>：當 ETF 市價高於真實成分股總價值（<strong>淨值</strong>）產生「溢價」時，AP 會買進成分股向投信換成 ETF 拿到市場賣出賺差價，使市價被壓回淨值附近；「折價」時則反向操作 <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a>。新手下單前仍建議先確認網站上的即時預估淨值，避免在溢價過高（例如超過 1%）時追高買進 <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a>。</li>\n</ol>\n<h2>2. 投資 ETF 的兩大成本：外扣 vs. 內扣</h2>\n<ul>\n<li><strong>交易外扣成本（買賣當下才付）</strong>：台灣券商手續費法定上限 <strong>0.1425%</strong>（電子下單常有折扣），賣出股票型 ETF 須課徵證券交易稅 <strong>0.1%</strong> <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a>。</li>\n<li><strong>內扣費用率（Expense Ratio，每天自動從淨值扣除）</strong>：包含經理費、保管費與營運成本 <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a><a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a>。以台灣龍頭 <strong>0050</strong> 為例，因規模採級距式計費，經理費約 <strong>0.0688%–0.1%</strong>、保管費約 <strong>0.025%–0.03%</strong> <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a>；美股 <strong>VOO</strong> 則僅 <strong>0.03%</strong> <a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a>。</li>\n</ul>\n<p>Vanguard 指出，費用率是投資人少數能 100% 掌控的確定變數，省下來的每一分費用都會直接留在帳戶內參與 <a href=\"#compounding-time-value\" class=\"wikilink\" data-target=\"compounding-time-value\">[[compounding-time-value]]</a> <a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a>。</p>\n<hr />\n<p><strong>延伸閱讀</strong>：<a href=\"#tw-0050-vs-global-etf\" class=\"wikilink\" data-target=\"tw-0050-vs-global-etf\">[[tw-0050-vs-global-etf]]</a> · <a href=\"#compounding-time-value\" class=\"wikilink\" data-target=\"compounding-time-value\">[[compounding-time-value]]</a> · <a href=\"#source-S1\" class=\"wikilink\" data-target=\"source-S1\">[[source-S1]]</a> · <a href=\"#source-S3\" class=\"wikilink\" data-target=\"source-S3\">[[source-S3]]</a></p>"}, {"id": "tw-0050-vs-global-etf", "title": "台灣新手標的對照：0050 vs. 全球 ETF（VT / VWRA / VOO）", "category": "instruments", "category_label": "二、指數與 ETF 原理", "summary": "從追蹤市場、內扣費用率、配息稅負與開戶管道四個維度，比較台灣 0050 與美股/愛爾蘭全球指數 ETF。", "sources": ["S1", "S3"], "updated": "2026-11-26", "tags": ["指數原理", 40, "VT", "VWRA"], "path": "wiki/instruments/tw-0050-vs-global-etf.md", "outlinks": ["asset-allocation", "etf-mechanics-fees", "source-S1", "source-S3"], "backlinks": [{"id": "active-vs-passive", "title": "主動投資 vs. 被動指數投資：SPIVA 實證數據怎麼說？"}, {"id": "etf-mechanics-fees", "title": "ETF 運作機制與費用解析：看懂市價、淨值與內扣費用率"}, {"id": "first-step-roadmap", "title": "台灣新手 5 步行動清單：今晚就能開始的指數投資起手式"}, {"id": "volatility-vs-permanent-loss", "title": "波動不等於永久虧損：建立承受市場回檔的心理防線"}, {"id": "source-S1", "title": "來源摘要 S1：臺灣證券交易所 ETF 專區與 0050 公開資訊"}, {"id": "source-S3", "title": "來源摘要 S3：Vanguard 費用率研究與全球 ETF（VOO / VT / VWRA）"}, {"id": "asset-allocation", "title": "資產配置與股債比例：決定長期風險與睡得著覺的關鍵"}], "html": "<h1>台灣新手標的對照：0050 vs. 全球 ETF（VT / VWRA / VOO）</h1>\n<p>台灣新手最常面臨的第一個選擇題是：「我該買台股 0050，還是直接買美股或愛爾蘭的全球指數 ETF？」這幾檔都是優秀的低成本市值型 ETF，差異在於<strong>分散範圍、費用率與稅務結構</strong> <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a><a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a>。</p>\n<h2>四大代表標的規格對照表</h2>\n<table>\n<thead>\n<tr>\n<th style=\"text-align: left;\">標的代號</th>\n<th style=\"text-align: left;\">註冊地 / 追蹤指數</th>\n<th style=\"text-align: left;\">涵蓋範圍</th>\n<th style=\"text-align: left;\">內扣費用率</th>\n<th style=\"text-align: left;\">台灣投資人股息與稅務重點</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td style=\"text-align: left;\"><strong>0050</strong>（元大台灣50）</td>\n<td style=\"text-align: left;\">台灣 / 台灣 50 指數</td>\n<td style=\"text-align: left;\">台股市值前 50 大企業</td>\n<td style=\"text-align: left;\">經理費約 0.0688%–0.1%＋保管費約 0.025%–0.03% <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a></td>\n<td style=\"text-align: left;\">台幣計價、台灣券商直接下單，賣出證交稅 0.1%，無匯率轉換門檻 <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a></td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>VOO</strong>（Vanguard S&amp;P 500）</td>\n<td style=\"text-align: left;\">美國 / S&amp;P 500 指數</td>\n<td style=\"text-align: left;\">美國前 500 大企業</td>\n<td style=\"text-align: left;\"><strong>0.03%</strong> <a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a></td>\n<td style=\"text-align: left;\">單一美國市場；非美籍人士配息預扣 30% 美國股息稅 <a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a></td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>VT</strong>（Vanguard Total World）</td>\n<td style=\"text-align: left;\">美國 / FTSE Global All Cap</td>\n<td style=\"text-align: left;\">全球逾 <strong>10,000 檔</strong>大中小股</td>\n<td style=\"text-align: left;\"><strong>0.06%</strong> <a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a></td>\n<td style=\"text-align: left;\">一檔買下全世界；非美籍配息預扣 30% 稅且須留意美國遺產稅規定 <a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a></td>\n</tr>\n<tr>\n<td style=\"text-align: left;\"><strong>VWRA</strong>（Vanguard FTSE All-World UCITS）</td>\n<td style=\"text-align: left;\">愛爾蘭 / FTSE All-World</td>\n<td style=\"text-align: left;\">全球大中型企業</td>\n<td style=\"text-align: left;\"><strong>0.14%</strong>（原 0.19%）<a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a></td>\n<td style=\"text-align: left;\"><strong>累積型</strong>自動再投入配息；愛美協定使美股預扣稅降至 <strong>15%</strong>，避開美國遺產稅爭議 <a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a></td>\n</tr>\n</tbody>\n</table>\n<h2>新手該怎麼選？</h2>\n<ul>\n<li><strong>剛起步、資金以台幣為主</strong>：先用台灣合法券商定期定額 <strong>0050</strong>，門檻最低、零換匯摩擦，能立刻建立投資習慣 <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a>。</li>\n<li><strong>想進一步全球分散（降低單一台灣產業集中風險）</strong>：可搭配複委託或海外合法券商配置 <strong>VT</strong> 或 <strong>VWRA</strong> <a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a>。這兩類標的也能共同納入你的 <a href=\"#asset-allocation\" class=\"wikilink\" data-target=\"asset-allocation\">[[asset-allocation]]</a> 藍圖中。</li>\n</ul>\n<hr />\n<p><strong>延伸閱讀</strong>：<a href=\"#etf-mechanics-fees\" class=\"wikilink\" data-target=\"etf-mechanics-fees\">[[etf-mechanics-fees]]</a> · <a href=\"#asset-allocation\" class=\"wikilink\" data-target=\"asset-allocation\">[[asset-allocation]]</a> · <a href=\"#source-S1\" class=\"wikilink\" data-target=\"source-S1\">[[source-S1]]</a> · <a href=\"#source-S3\" class=\"wikilink\" data-target=\"source-S3\">[[source-S3]]</a></p>"}, {"id": "beginner-five-pitfalls", "title": "台灣新手最常踩的 5 大投資誤區與防詐原則", "category": "risk", "category_label": "四、風險與行為防線", "summary": "整理「借錢投資、追逐飆股明牌、頻繁短線進出、忽略內扣費用、未查證合法機構」五大新手陷阱與避險做法。", "sources": ["S1", "S3", "S4", "S6"], "updated": "2026-11-26", "tags": ["風險防線", "投資誤區", "防詐保護"], "path": "wiki/risk/beginner-five-pitfalls.md", "outlinks": ["volatility-vs-permanent-loss", "emergency-fund", "dca-and-rebalancing", "etf-mechanics-fees", "first-step-roadmap", "source-S6"], "backlinks": [{"id": "volatility-vs-permanent-loss", "title": "波動不等於永久虧損：建立承受市場回檔的心理防線"}, {"id": "source-S1", "title": "來源摘要 S1：臺灣證券交易所 ETF 專區與 0050 公開資訊"}, {"id": "source-S3", "title": "來源摘要 S3：Vanguard 費用率研究與全球 ETF（VOO / VT / VWRA）"}, {"id": "source-S4", "title": "來源摘要 S4：S&P Dow Jones Indices — SPIVA U.S. Scorecard"}, {"id": "source-S6", "title": "來源摘要 S6：台灣新手安全網、定期定額與金管會／投保中心保護"}, {"id": "dca-and-rebalancing", "title": "定期定額與再平衡：用紀律自動做到「買低賣高」"}], "html": "<h1>台灣新手最常踩的 5 大投資誤區與防詐原則</h1>\n<p>建立知識庫不只是學「該做什麼」，更要清楚「絕對不能做什麼」。以下是台灣理財新手最常見的五個陷阱：</p>\n<ol>\n<li><strong>沒存緊急預備金就 All-in，甚至借錢開槓桿</strong>\n   一旦遇到失業或急診，被迫在股市大跌時賣股求現，瞬間把 <a href=\"#volatility-vs-permanent-loss\" class=\"wikilink\" data-target=\"volatility-vs-permanent-loss\">[[volatility-vs-permanent-loss]]</a> 變成永久虧損 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。解方：務必先存好 3–6 個月 <a href=\"#emergency-fund\" class=\"wikilink\" data-target=\"emergency-fund\">[[emergency-fund]]</a> <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</li>\n<li><strong>迷信群組「飆股明牌」或「保證獲利」話術</strong>\n   任何宣稱「穩賺不賠、保證年化 15%」的投資群組極高機率是詐騙 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。開戶與交易務必認明<strong>金管會</strong>監理之合法券商與投信；若遇上市櫃公司不法情事受損，可尋求<strong>投保中心（SFIPC）</strong>協助 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</li>\n<li><strong>頻繁短線進出、看盤猜高低點</strong>\n   SPIVA 報告顯示連專業經理人長期都逾九成輸給大盤，頻繁買賣只會累積券商手續費（0.1425%）與證交稅（0.1%），拖累整體報酬 <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a><a href=\"#source-S4\" class=\"cite-badge\" title=\"查看來源 S4\">[S4]</a>。解方：改用 <a href=\"#dca-and-rebalancing\" class=\"wikilink\" data-target=\"dca-and-rebalancing\">[[dca-and-rebalancing]]</a> <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</li>\n<li><strong>只看配息率，忽略總報酬與內扣費用率</strong>\n   配息是把左邊口袋的錢換到右邊口袋，真正決定資產成長的是「含息總報酬扣除 <a href=\"#etf-mechanics-fees\" class=\"wikilink\" data-target=\"etf-mechanics-fees\">[[etf-mechanics-fees]]</a> 內扣費用」<a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a>。</li>\n<li><strong>在溢價過高時盲目追買 ETF</strong>\n   未檢查 ETF 即時淨值就在市價大幅高於淨值時搶進，等同買貴了同一籃子股票 <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a>。</li>\n</ol>\n<hr />\n<p><strong>延伸閱讀</strong>：<a href=\"#volatility-vs-permanent-loss\" class=\"wikilink\" data-target=\"volatility-vs-permanent-loss\">[[volatility-vs-permanent-loss]]</a> · <a href=\"#first-step-roadmap\" class=\"wikilink\" data-target=\"first-step-roadmap\">[[first-step-roadmap]]</a> · <a href=\"#source-S6\" class=\"wikilink\" data-target=\"source-S6\">[[source-S6]]</a></p>"}, {"id": "first-step-roadmap", "title": "台灣新手 5 步行動清單：今晚就能開始的指數投資起手式", "category": "risk", "category_label": "四、風險與行為防線", "summary": "將所有知識濃縮為「盤點收支→存預備金→定目標比例→開合法戶→定期定額＋年度檢視」五個可立即執行的步驟。", "sources": ["S1", "S5", "S6"], "updated": "2026-11-26", "tags": ["風險防線", "行動清單", "新手起手式"], "path": "wiki/risk/first-step-roadmap.md", "outlinks": ["emergency-fund", "tw-0050-vs-global-etf", "dca-and-rebalancing", "asset-allocation"], "backlinks": [{"id": "emergency-fund", "title": "緊急預備金：投資前必築的第一道安全網"}, {"id": "beginner-five-pitfalls", "title": "台灣新手最常踩的 5 大投資誤區與防詐原則"}, {"id": "source-S1", "title": "來源摘要 S1：臺灣證券交易所 ETF 專區與 0050 公開資訊"}, {"id": "source-S5", "title": "來源摘要 S5：Bogleheads 投資哲學、三基金配置與再平衡"}, {"id": "source-S6", "title": "來源摘要 S6：台灣新手安全網、定期定額與金管會／投保中心保護"}], "html": "<h1>台灣新手 5 步行動清單：今晚就能開始的指數投資起手式</h1>\n<p>讀完理論後，最重要的就是踏出第一步。按照以下五個步驟，你不需要任何複雜的看盤技巧，就能建立穩健的自動化理財系統：</p>\n<ol>\n<li><strong>盤點每月必要生活費，設定預備金目標</strong>\n   算出房租、伙食、保險與基本開銷總和，乘以 3 至 6 個月，作為你的 <a href=\"#emergency-fund\" class=\"wikilink\" data-target=\"emergency-fund\">[[emergency-fund]]</a> 目標 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</li>\n<li><strong>將預備金存入高流動性保本帳戶</strong>\n   利用銀行高利活存或短天期定存隔離這筆救命錢，不與日常消費或投資帳戶混在一起 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</li>\n<li><strong>決定自己的資產配置比例</strong>\n   依據投資年限與抗壓性，設定目標股債比（例如年輕族群 80/20 或穩健型 60/40），並挑選低成本市值型標的（如 <a href=\"#tw-0050-vs-global-etf\" class=\"wikilink\" data-target=\"tw-0050-vs-global-etf\">[[tw-0050-vs-global-etf]]</a> 中的 0050、VT 或 VWRA）<a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a><a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a><a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。</li>\n<li><strong>透過金管會監理之合法券商開戶</strong>\n   選擇手續費合理、介面友善的台灣合法證券商（或合法複委託／海外監理券商），絕不匯款給陌生個人或不明群組 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</li>\n<li><strong>設定每月定期定額，每年再平衡一次</strong>\n   發薪日隔天自動扣款執行 <a href=\"#dca-and-rebalancing\" class=\"wikilink\" data-target=\"dca-and-rebalancing\">[[dca-and-rebalancing]]</a>，一年檢視一次比例並用新資金微調，其餘時間專注於本業收入與生活 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a><a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</li>\n</ol>\n<hr />\n<p><strong>延伸閱讀</strong>：<a href=\"#emergency-fund\" class=\"wikilink\" data-target=\"emergency-fund\">[[emergency-fund]]</a> · <a href=\"#asset-allocation\" class=\"wikilink\" data-target=\"asset-allocation\">[[asset-allocation]]</a> · <a href=\"#dca-and-rebalancing\" class=\"wikilink\" data-target=\"dca-and-rebalancing\">[[dca-and-rebalancing]]</a></p>"}, {"id": "volatility-vs-permanent-loss", "title": "波動不等於永久虧損：建立承受市場回檔的心理防線", "category": "risk", "category_label": "四、風險與行為防線", "summary": "帳面下跌只是暫時性的價格波動，唯有在低點恐慌賣出或押注單一倒閉標的，才會把波動變成永久虧損。", "sources": ["S2", "S5", "S6"], "updated": "2026-11-26", "tags": ["風險防線", "市場波動", "長期持有"], "path": "wiki/risk/volatility-vs-permanent-loss.md", "outlinks": ["tw-0050-vs-global-etf", "emergency-fund", "asset-allocation", "beginner-five-pitfalls", "source-S6"], "backlinks": [{"id": "emergency-fund", "title": "緊急預備金：投資前必築的第一道安全網"}, {"id": "beginner-five-pitfalls", "title": "台灣新手最常踩的 5 大投資誤區與防詐原則"}, {"id": "source-S2", "title": "來源摘要 S2：SEC Investor.gov 複利與指數基金指南"}, {"id": "source-S5", "title": "來源摘要 S5：Bogleheads 投資哲學、三基金配置與再平衡"}, {"id": "source-S6", "title": "來源摘要 S6：台灣新手安全網、定期定額與金管會／投保中心保護"}, {"id": "asset-allocation", "title": "資產配置與股債比例：決定長期風險與睡得著覺的關鍵"}], "html": "<h1>波動不等於永久虧損：建立承受市場回檔的心理防線</h1>\n<p>新手看見帳戶報酬率從 +10% 變成 -20% 時，往往會恐慌地把錢全部領出來。理解「暫時波動」與「永久虧損」的差別，是成為成熟指數投資人的分水嶺 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a><a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</p>\n<h2>1. 什麼是波動（Volatility）？</h2>\n<ul>\n<li><strong>定義</strong>：市場價格因為景氣循環、利率變化或群眾情緒而上下起伏的正常現象。</li>\n<li><strong>特性</strong>：只要你持有的是分散於數十至數千家龍頭企業的廣泛型指數 ETF（見 <a href=\"#tw-0050-vs-global-etf\" class=\"wikilink\" data-target=\"tw-0050-vs-global-etf\">[[tw-0050-vs-global-etf]]</a>），只要全球與區域經濟持續運作，帳面下跌只是「未實現損益」的暫時波動，股數本身並沒有減少 <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a><a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。</li>\n</ul>\n<h2>2. 什麼時候波動會變成「永久虧損（Permanent Loss）」？</h2>\n<ol>\n<li><strong>在低點恐慌賣出</strong>：通常發生在沒有準備 <a href=\"#emergency-fund\" class=\"wikilink\" data-target=\"emergency-fund\">[[emergency-fund]]</a>、或承受了超出自己心臟負荷的股票比例（未做好 <a href=\"#asset-allocation\" class=\"wikilink\" data-target=\"asset-allocation\">[[asset-allocation]]</a>）時，急需用錢或受不了壓力而認賠殺出 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a><a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</li>\n<li><strong>重壓單一個股或高風險槓桿產品</strong>：單一公司可能因經營不善而倒閉下市，股價歸零後永遠無法回本；但全市場指數會自動汰弱留強 <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a>。</li>\n<li><strong>遭遇非法金融詐騙</strong>：把資金轉入未受金管會監理的假平台 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</li>\n</ol>\n<p>記住：股市的短期波動，正是長期投資人獲得高於銀行定存報酬的「入場費」。</p>\n<hr />\n<p><strong>延伸閱讀</strong>：<a href=\"#emergency-fund\" class=\"wikilink\" data-target=\"emergency-fund\">[[emergency-fund]]</a> · <a href=\"#beginner-five-pitfalls\" class=\"wikilink\" data-target=\"beginner-five-pitfalls\">[[beginner-five-pitfalls]]</a> · <a href=\"#source-S6\" class=\"wikilink\" data-target=\"source-S6\">[[source-S6]]</a></p>"}, {"id": "source-S1", "title": "來源摘要 S1：臺灣證券交易所 ETF 專區與 0050 公開資訊", "category": "sources", "category_label": "五、權威來源摘要", "summary": "彙整 TWSE ETF 雙市場運作機制、折溢價套利與元大台灣 50（0050）之經理費、保管費及交易稅費。", "sources": ["S1"], "updated": "2026-11-26", "tags": ["來源摘要", "TWSE", 40], "path": "wiki/sources/source-S1.md", "outlinks": ["etf-mechanics-fees", "tw-0050-vs-global-etf", "beginner-five-pitfalls", "first-step-roadmap"], "backlinks": [{"id": "etf-mechanics-fees", "title": "ETF 運作機制與費用解析：看懂市價、淨值與內扣費用率"}, {"id": "tw-0050-vs-global-etf", "title": "台灣新手標的對照：0050 vs. 全球 ETF（VT / VWRA / VOO）"}], "html": "<h1>來源摘要 S1：臺灣證券交易所 ETF 專區與 0050 公開資訊</h1>\n<ul>\n<li><strong>來源機構</strong>：臺灣證券交易所 / 元大投信公開說明書彙整 <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a></li>\n<li><strong>參考網址</strong>：https://www.twse.com.tw/zh/products/securities/etf/overview.html</li>\n<li><strong>擷取日期</strong>：2026-11-26</li>\n</ul>\n<h2>關鍵萃取事實</h2>\n<ol>\n<li>ETF 結合股票盤中買賣流動性與基金分散風險特性 <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a>。</li>\n<li>初級市場由參與證券商（AP）申購買回、次級市場由一般投資人撮合買賣，透過折溢價套利機制使市價貼近淨值 <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a>。</li>\n<li>0050 採級距式內扣費用：經理費約 0.0688%–0.1%、保管費約 0.025%–0.03%；外部交易成本為券商手續費上限 0.1425%、賣出證交稅 0.1% <a href=\"#source-S1\" class=\"cite-badge\" title=\"查看來源 S1\">[S1]</a>。</li>\n</ol>\n<h2>引用本來源的知識條目</h2>\n<ul>\n<li><a href=\"#etf-mechanics-fees\" class=\"wikilink\" data-target=\"etf-mechanics-fees\">[[etf-mechanics-fees]]</a></li>\n<li><a href=\"#tw-0050-vs-global-etf\" class=\"wikilink\" data-target=\"tw-0050-vs-global-etf\">[[tw-0050-vs-global-etf]]</a></li>\n<li><a href=\"#beginner-five-pitfalls\" class=\"wikilink\" data-target=\"beginner-five-pitfalls\">[[beginner-five-pitfalls]]</a></li>\n<li><a href=\"#first-step-roadmap\" class=\"wikilink\" data-target=\"first-step-roadmap\">[[first-step-roadmap]]</a></li>\n</ul>"}, {"id": "source-S2", "title": "來源摘要 S2：SEC Investor.gov 複利與指數基金指南", "category": "sources", "category_label": "五、權威來源摘要", "summary": "彙整美國證交會 Investor.gov 對複利雪球效應、時間槓桿、被動指數分散與股息再投入的基礎說明。", "sources": ["S2"], "updated": "2026-11-26", "tags": ["來源摘要", "Investor.gov", "複利"], "path": "wiki/sources/source-S2.md", "outlinks": ["inflation-purchasing-power", "compounding-time-value", "active-vs-passive", "volatility-vs-permanent-loss"], "backlinks": [{"id": "compounding-time-value", "title": "複利與時間價值：讓雪球滾起來的關鍵槓桿"}, {"id": "inflation-purchasing-power", "title": "通貨膨脹與購買力：為什麼錢放銀行會默默變薄？"}], "html": "<h1>來源摘要 S2：SEC Investor.gov 複利與指數基金指南</h1>\n<ul>\n<li><strong>來源機構</strong>：U.S. Securities and Exchange Commission (Investor.gov) <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a></li>\n<li><strong>參考網址</strong>：https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator</li>\n<li><strong>擷取日期</strong>：2026-11-26</li>\n</ul>\n<h2>關鍵萃取事實</h2>\n<ol>\n<li>複利是「利滾利」的指數級成長（$FV = PV(1+r)^n$），時間是最大槓桿 <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a>。</li>\n<li>指數基金採被動追蹤市場指數策略，天然具備分散風險與低成本優勢 <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a>。</li>\n<li>將股息自動再投入、保持低成本與長期持有，能最大化複利效果 <a href=\"#source-S2\" class=\"cite-badge\" title=\"查看來源 S2\">[S2]</a>。</li>\n</ol>\n<h2>引用本來源的知識條目</h2>\n<ul>\n<li><a href=\"#inflation-purchasing-power\" class=\"wikilink\" data-target=\"inflation-purchasing-power\">[[inflation-purchasing-power]]</a></li>\n<li><a href=\"#compounding-time-value\" class=\"wikilink\" data-target=\"compounding-time-value\">[[compounding-time-value]]</a></li>\n<li><a href=\"#active-vs-passive\" class=\"wikilink\" data-target=\"active-vs-passive\">[[active-vs-passive]]</a></li>\n<li><a href=\"#volatility-vs-permanent-loss\" class=\"wikilink\" data-target=\"volatility-vs-permanent-loss\">[[volatility-vs-permanent-loss]]</a></li>\n</ul>"}, {"id": "source-S3", "title": "來源摘要 S3：Vanguard 費用率研究與全球 ETF（VOO / VT / VWRA）", "category": "sources", "category_label": "五、權威來源摘要", "summary": "彙整 Vanguard Cost Matters 費用研究，以及 VOO（0.03%）、VT（0.06%）、VWRA（0.14%）的結構與稅務差異。", "sources": ["S3"], "updated": "2026-11-26", "tags": ["來源摘要", "Vanguard", "費用率"], "path": "wiki/sources/source-S3.md", "outlinks": ["compounding-time-value", "etf-mechanics-fees", "tw-0050-vs-global-etf", "beginner-five-pitfalls"], "backlinks": [{"id": "compounding-time-value", "title": "複利與時間價值：讓雪球滾起來的關鍵槓桿"}, {"id": "etf-mechanics-fees", "title": "ETF 運作機制與費用解析：看懂市價、淨值與內扣費用率"}, {"id": "tw-0050-vs-global-etf", "title": "台灣新手標的對照：0050 vs. 全球 ETF（VT / VWRA / VOO）"}], "html": "<h1>來源摘要 S3：Vanguard 費用率研究與全球 ETF（VOO / VT / VWRA）</h1>\n<ul>\n<li><strong>來源機構</strong>：Vanguard Investor Education <a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a></li>\n<li><strong>參考網址</strong>：https://investor.vanguard.com/investor-resources-education/how-to-invest/impact-of-costs</li>\n<li><strong>擷取日期</strong>：2026-11-26</li>\n</ul>\n<h2>關鍵萃取事實</h2>\n<ol>\n<li>內扣費用率是投資人少數能 100% 掌控的變數，長期複利下 1%–1.5% 的費用差會嚴重侵蝕最終資產 <a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a>。</li>\n<li>費用率比較：VOO 0.03%、VT 0.06%（逾 10,000 檔全球股票）、VWRA 0.14%（原 0.19%，愛爾蘭 UCITS 累積型） <a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a>。</li>\n<li>非美籍投資人持有美股 ETF 股息預扣稅 30%，改用愛爾蘭 VWRA 可降至 15% 且自動再投入、避開美國遺產稅爭議 <a href=\"#source-S3\" class=\"cite-badge\" title=\"查看來源 S3\">[S3]</a>。</li>\n</ol>\n<h2>引用本來源的知識條目</h2>\n<ul>\n<li><a href=\"#compounding-time-value\" class=\"wikilink\" data-target=\"compounding-time-value\">[[compounding-time-value]]</a></li>\n<li><a href=\"#etf-mechanics-fees\" class=\"wikilink\" data-target=\"etf-mechanics-fees\">[[etf-mechanics-fees]]</a></li>\n<li><a href=\"#tw-0050-vs-global-etf\" class=\"wikilink\" data-target=\"tw-0050-vs-global-etf\">[[tw-0050-vs-global-etf]]</a></li>\n<li><a href=\"#beginner-five-pitfalls\" class=\"wikilink\" data-target=\"beginner-five-pitfalls\">[[beginner-five-pitfalls]]</a></li>\n</ul>"}, {"id": "source-S4", "title": "來源摘要 S4：S&P Dow Jones Indices — SPIVA U.S. Scorecard", "category": "sources", "category_label": "五、權威來源摘要", "summary": "彙整 SPIVA 實證報告：10 年期 83%–86%、15 年期 90.49%、20 年期逾 92% 主動型美國大型股基金落後 S&P 500。", "sources": ["S4"], "updated": "2026-11-26", "tags": ["來源摘要", "SPIVA", "主被動比較"], "path": "wiki/sources/source-S4.md", "outlinks": ["active-vs-passive", "beginner-five-pitfalls"], "backlinks": [{"id": "active-vs-passive", "title": "主動投資 vs. 被動指數投資：SPIVA 實證數據怎麼說？"}], "html": "<h1>來源摘要 S4：S&amp;P Dow Jones Indices — SPIVA U.S. Scorecard</h1>\n<ul>\n<li><strong>來源機構</strong>：S&amp;P Dow Jones Indices <a href=\"#source-S4\" class=\"cite-badge\" title=\"查看來源 S4\">[S4]</a></li>\n<li><strong>參考網址</strong>：https://www.spglobal.com/spdji/en/research-insights/spiva/</li>\n<li><strong>擷取日期</strong>：2026-11-26</li>\n</ul>\n<h2>關鍵萃取事實</h2>\n<ol>\n<li>主動管理型美國大型股基金長期落後 S&amp;P 500：10 年期約 83%–86%、15 年期 90.49%、20 年期超過 92% <a href=\"#source-S4\" class=\"cite-badge\" title=\"查看來源 S4\">[S4]</a>。</li>\n<li>落後主因包含高額經理費、頻繁換股交易成本與市場效率，且報告已修正「倖存者偏差」（計入被清算或合併之基金） <a href=\"#source-S4\" class=\"cite-badge\" title=\"查看來源 S4\">[S4]</a>。</li>\n</ol>\n<h2>引用本來源的知識條目</h2>\n<ul>\n<li><a href=\"#active-vs-passive\" class=\"wikilink\" data-target=\"active-vs-passive\">[[active-vs-passive]]</a></li>\n<li><a href=\"#beginner-five-pitfalls\" class=\"wikilink\" data-target=\"beginner-five-pitfalls\">[[beginner-five-pitfalls]]</a></li>\n</ul>"}, {"id": "source-S5", "title": "來源摘要 S5：Bogleheads 投資哲學、三基金配置與再平衡", "category": "sources", "category_label": "五、權威來源摘要", "summary": "彙整 Bogleheads 低成本、廣泛分散、簡單與紀律四大原則，以及股債比例設定與再平衡實作方法。", "sources": ["S5"], "updated": "2026-11-26", "tags": ["來源摘要", "Bogleheads", "資產配置"], "path": "wiki/sources/source-S5.md", "outlinks": ["asset-allocation", "dca-and-rebalancing", "volatility-vs-permanent-loss", "first-step-roadmap"], "backlinks": [{"id": "asset-allocation", "title": "資產配置與股債比例：決定長期風險與睡得著覺的關鍵"}, {"id": "dca-and-rebalancing", "title": "定期定額與再平衡：用紀律自動做到「買低賣高」"}], "html": "<h1>來源摘要 S5：Bogleheads 投資哲學、三基金配置與再平衡</h1>\n<ul>\n<li><strong>來源機構</strong>：Bogleheads Wiki <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a></li>\n<li><strong>參考網址</strong>：https://www.bogleheads.org/wiki/Three-fund_portfolio</li>\n<li><strong>擷取日期</strong>：2026-11-26</li>\n</ul>\n<h2>關鍵萃取事實</h2>\n<ol>\n<li>四大原則：低成本、廣泛分散、簡單架構、長期紀律 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。</li>\n<li>依風險承受度設定股債比例（如 80/20 或 60/40），透過債券緩衝股市下跌波動 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。</li>\n<li>再平衡強制「賣高買低」，新手最推薦以「新投入資金買進低配部位」，或採年度定期、5/25 門檻法則 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。</li>\n</ol>\n<h2>引用本來源的知識條目</h2>\n<ul>\n<li><a href=\"#asset-allocation\" class=\"wikilink\" data-target=\"asset-allocation\">[[asset-allocation]]</a></li>\n<li><a href=\"#dca-and-rebalancing\" class=\"wikilink\" data-target=\"dca-and-rebalancing\">[[dca-and-rebalancing]]</a></li>\n<li><a href=\"#volatility-vs-permanent-loss\" class=\"wikilink\" data-target=\"volatility-vs-permanent-loss\">[[volatility-vs-permanent-loss]]</a></li>\n<li><a href=\"#first-step-roadmap\" class=\"wikilink\" data-target=\"first-step-roadmap\">[[first-step-roadmap]]</a></li>\n</ul>"}, {"id": "source-S6", "title": "來源摘要 S6：台灣新手安全網、定期定額與金管會／投保中心保護", "category": "sources", "category_label": "五、權威來源摘要", "summary": "彙整 3–6 個月必要生活費預備金、定期定額克服擇時焦慮，以及台灣金管會與投保中心（SFIPC）法規保護。", "sources": ["S6"], "updated": "2026-11-26", "tags": ["來源摘要", "金管會", "投保中心"], "path": "wiki/sources/source-S6.md", "outlinks": ["emergency-fund", "inflation-purchasing-power", "dca-and-rebalancing", "volatility-vs-permanent-loss", "beginner-five-pitfalls", "first-step-roadmap"], "backlinks": [{"id": "emergency-fund", "title": "緊急預備金：投資前必築的第一道安全網"}, {"id": "beginner-five-pitfalls", "title": "台灣新手最常踩的 5 大投資誤區與防詐原則"}, {"id": "volatility-vs-permanent-loss", "title": "波動不等於永久虧損：建立承受市場回檔的心理防線"}, {"id": "dca-and-rebalancing", "title": "定期定額與再平衡：用紀律自動做到「買低賣高」"}], "html": "<h1>來源摘要 S6：台灣新手安全網、定期定額與金管會／投保中心保護</h1>\n<ul>\n<li><strong>來源機構</strong>：金管會（FSC）&amp; 證券投資人及期貨交易人保護中心（SFIPC）理財教育彙整 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a></li>\n<li><strong>參考網址</strong>：https://www.fsc.gov.tw/ 與 https://www.sfipc.org.tw/</li>\n<li><strong>擷取日期</strong>：2026-11-26</li>\n</ul>\n<h2>關鍵萃取事實</h2>\n<ol>\n<li>投資前須先備妥 3–6 個月「必要生活費」（非全額月薪；收入不穩者 6–12 個月）於高流動性保本帳戶（活存／短天期定存），避免低點被迫賣股 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</li>\n<li>定期定額（DCA）能將「猜測高低點」轉化為「長期平均成本」，降低心理壓力 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</li>\n<li>務必透過金管會監理之合法金融機構開戶，遠離飆股詐騙；遇上市櫃公司不法損害可向投保中心（SFIPC）尋求團體訴訟或調處 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</li>\n</ol>\n<h2>引用本來源的知識條目</h2>\n<ul>\n<li><a href=\"#emergency-fund\" class=\"wikilink\" data-target=\"emergency-fund\">[[emergency-fund]]</a></li>\n<li><a href=\"#inflation-purchasing-power\" class=\"wikilink\" data-target=\"inflation-purchasing-power\">[[inflation-purchasing-power]]</a></li>\n<li><a href=\"#dca-and-rebalancing\" class=\"wikilink\" data-target=\"dca-and-rebalancing\">[[dca-and-rebalancing]]</a></li>\n<li><a href=\"#volatility-vs-permanent-loss\" class=\"wikilink\" data-target=\"volatility-vs-permanent-loss\">[[volatility-vs-permanent-loss]]</a></li>\n<li><a href=\"#beginner-five-pitfalls\" class=\"wikilink\" data-target=\"beginner-five-pitfalls\">[[beginner-five-pitfalls]]</a></li>\n<li><a href=\"#first-step-roadmap\" class=\"wikilink\" data-target=\"first-step-roadmap\">[[first-step-roadmap]]</a></li>\n</ul>"}, {"id": "asset-allocation", "title": "資產配置與股債比例：決定長期風險與睡得著覺的關鍵", "category": "strategies", "category_label": "三、新手實作策略", "summary": "資產配置透過股票追求成長、債券緩衝下跌，依據年齡與風險承受度設定如 80/20 或 60/40 的目標比例。", "sources": ["S5"], "updated": "2026-11-26", "tags": ["實作策略", "資產配置", "三基金組合"], "path": "wiki/strategies/asset-allocation.md", "outlinks": ["tw-0050-vs-global-etf", "inflation-purchasing-power", "dca-and-rebalancing", "volatility-vs-permanent-loss", "source-S5"], "backlinks": [{"id": "tw-0050-vs-global-etf", "title": "台灣新手標的對照：0050 vs. 全球 ETF（VT / VWRA / VOO）"}, {"id": "first-step-roadmap", "title": "台灣新手 5 步行動清單：今晚就能開始的指數投資起手式"}, {"id": "volatility-vs-permanent-loss", "title": "波動不等於永久虧損：建立承受市場回檔的心理防線"}, {"id": "source-S5", "title": "來源摘要 S5：Bogleheads 投資哲學、三基金配置與再平衡"}, {"id": "dca-and-rebalancing", "title": "定期定額與再平衡：用紀律自動做到「買低賣高」"}], "html": "<h1>資產配置與股債比例：決定長期風險與睡得著覺的關鍵</h1>\n<p>選對低成本 ETF 之後，接下來要決定「多少錢放股票、多少錢放債券或現金」。Bogleheads 投資哲學強調：<strong>資產配置（Asset Allocation）才是決定投資組合長期波動度的主因</strong>，而非挑選哪一檔神奇個股 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。</p>\n<h2>1. 經典三基金配置（Three-Fund Portfolio）</h2>\n<p>Bogleheads 建議用最簡單的架構涵蓋全球市場 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>：\n1. <strong>本國股票全市場指數</strong>（台灣新手可對應台股大盤 ETF）\n2. <strong>國際股票全市場指數</strong>（如全球股市 ETF）\n3. <strong>綜合債券市場指數</strong>（投資級政府公債／綜合債券 ETF）</p>\n<p><em>(若使用單一全球股票 ETF 如 <a href=\"#tw-0050-vs-global-etf\" class=\"wikilink\" data-target=\"tw-0050-vs-global-etf\">[[tw-0050-vs-global-etf]]</a> 中的 VT 或 VWRA，甚至可簡化為「全球股票 ETF ＋ 債券 ETF」兩檔組合 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。)</em></p>\n<h2>2. 股票與債券的角色分工</h2>\n<ul>\n<li><strong>股票型 ETF（攻擊矛）</strong>：長期預期報酬較高，對抗 <a href=\"#inflation-purchasing-power\" class=\"wikilink\" data-target=\"inflation-purchasing-power\">[[inflation-purchasing-power]]</a>，但短期可能面臨 30% 至 50% 的帳面回檔。</li>\n<li><strong>高評等債券 ETF（防禦盾）</strong>：預期報酬較低，但在股市大幅崩盤時往往表現穩健或逆勢上漲，提供心理安定感與再平衡彈藥 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。</li>\n</ul>\n<h2>3. 新手常見配置比例參考</h2>\n<ul>\n<li><strong>年輕／投資期 15 年以上／能承受波動</strong>：<strong>80% 股票 / 20% 債券</strong>（或 90/10）<a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。</li>\n<li><strong>穩健型／中期目標（5–10 年）</strong>：<strong>60% 股票 / 40% 債券</strong> <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。</li>\n</ul>\n<p>設定好比例後，必須搭配 <a href=\"#dca-and-rebalancing\" class=\"wikilink\" data-target=\"dca-and-rebalancing\">[[dca-and-rebalancing]]</a> 來維持比例不偏離 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。</p>\n<hr />\n<p><strong>延伸閱讀</strong>：<a href=\"#dca-and-rebalancing\" class=\"wikilink\" data-target=\"dca-and-rebalancing\">[[dca-and-rebalancing]]</a> · <a href=\"#volatility-vs-permanent-loss\" class=\"wikilink\" data-target=\"volatility-vs-permanent-loss\">[[volatility-vs-permanent-loss]]</a> · <a href=\"#source-S5\" class=\"wikilink\" data-target=\"source-S5\">[[source-S5]]</a></p>"}, {"id": "dca-and-rebalancing", "title": "定期定額與再平衡：用紀律自動做到「買低賣高」", "category": "strategies", "category_label": "三、新手實作策略", "summary": "定期定額消除猜測高低點的焦慮，再平衡則透過新資金補齊低配部位或年度微調，系統化維持目標風險。", "sources": ["S5", "S6"], "updated": "2026-11-26", "tags": ["實作策略", "定期定額", "再平衡"], "path": "wiki/strategies/dca-and-rebalancing.md", "outlinks": ["asset-allocation", "beginner-five-pitfalls", "source-S5", "source-S6"], "backlinks": [{"id": "emergency-fund", "title": "緊急預備金：投資前必築的第一道安全網"}, {"id": "beginner-five-pitfalls", "title": "台灣新手最常踩的 5 大投資誤區與防詐原則"}, {"id": "first-step-roadmap", "title": "台灣新手 5 步行動清單：今晚就能開始的指數投資起手式"}, {"id": "source-S5", "title": "來源摘要 S5：Bogleheads 投資哲學、三基金配置與再平衡"}, {"id": "source-S6", "title": "來源摘要 S6：台灣新手安全網、定期定額與金管會／投保中心保護"}, {"id": "asset-allocation", "title": "資產配置與股債比例：決定長期風險與睡得著覺的關鍵"}], "html": "<h1>定期定額與再平衡：用紀律自動做到「買低賣高」</h1>\n<p>知道該買什麼之後，新手最常卡在「現在是高點嗎？要不要等崩盤再進場？」。答案是利用<strong>定期定額（DCA）</strong>與<strong>再平衡（Rebalancing）</strong>兩套自動化規則取代情緒判斷 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a><a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</p>\n<h2>1. 定期定額（Dollar-Cost Averaging, DCA）</h2>\n<p>每月發薪日後設定固定日期、固定金額自動扣款買進指數 ETF <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>：\n- <strong>市場貴的時候買少一點單位數，市場便宜的時候自動買進更多單位數</strong>，長期下來自然拉平買進成本 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。\n- 徹底克服「想等最低點卻一直空手錯過漲幅」或「追高殺低」的人性弱點 <a href=\"#source-S6\" class=\"cite-badge\" title=\"查看來源 S6\">[S6]</a>。</p>\n<h2>2. 為什麼需要再平衡（Rebalancing）？</h2>\n<p>假設你的目標是 <strong>80% 股票 / 20% 債券</strong>（見 <a href=\"#asset-allocation\" class=\"wikilink\" data-target=\"asset-allocation\">[[asset-allocation]]</a>），若當年股市大漲，比例可能自動飄移成 <strong>88% 股票 / 12% 債券</strong>，這會讓你的組合承擔比原本更高的崩盤風險 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。</p>\n<h2>3. 三種再平衡實作方式</h2>\n<ol>\n<li><strong>用新投入資金再平衡（新手最推薦）</strong>：每月新存入的定期定額資金，優先全部買進「比例偏低」的資產，完全不需賣出既有持股，省下手續費與交易稅 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。</li>\n<li><strong>年度日曆再平衡</strong>：每年固定一天（如生日或元旦）檢視一次，把漲多的資產賣出一部分、買進落後的資產，強制執行「賣高買低」<a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。</li>\n<li><strong>5/25 門檻法則</strong>：僅當某項資產權重絕對偏離 5 個百分點或相對偏離 25% 以上才動手調整，減少頻繁交易 <a href=\"#source-S5\" class=\"cite-badge\" title=\"查看來源 S5\">[S5]</a>。</li>\n</ol>\n<hr />\n<p><strong>延伸閱讀</strong>：<a href=\"#asset-allocation\" class=\"wikilink\" data-target=\"asset-allocation\">[[asset-allocation]]</a> · <a href=\"#beginner-five-pitfalls\" class=\"wikilink\" data-target=\"beginner-five-pitfalls\">[[beginner-five-pitfalls]]</a> · <a href=\"#source-S5\" class=\"wikilink\" data-target=\"source-S5\">[[source-S5]]</a> · <a href=\"#source-S6\" class=\"wikilink\" data-target=\"source-S6\">[[source-S6]]</a></p>"}];
+    const CATEGORY_ORDER = ["foundations", "instruments", "strategies", "risk", "sources"];
+    const CATEGORY_LABELS = {"foundations": "一、財務基石", "instruments": "二、指數與 ETF 原理", "strategies": "三、新手實作策略", "risk": "四、風險與行為防線", "sources": "五、權威來源摘要"};
+    const PAGE_MAP = Object.fromEntries(WIKI_PAGES.map(p => [p.id, p]));
+
+    function getCurrentId() {
+      const h = (window.location.hash || "#index").replace(/^#/, "");
+      return PAGE_MAP[h] ? h : "index";
+    }
+
+    function renderSidebar(filterText = "") {
+      const q = filterText.trim().toLowerCase();
+      const nav = document.getElementById("sidebarNav");
+      const currentId = getCurrentId();
+      const groups = [];
+
+      const metaPages = WIKI_PAGES.filter(p => p.category === "meta");
+      groups.push({ label: "知識庫導覽", items: metaPages });
+      for (const cat of CATEGORY_ORDER) {
+        const items = WIKI_PAGES.filter(p => p.category === cat);
+        groups.push({ label: CATEGORY_LABELS[cat], items });
+      }
+
+      let html = "";
+      for (const g of groups) {
+        const matched = g.items.filter(p => {
+          if (!q) return true;
+          return (p.title + " " + p.summary + " " + (p.tags || []).join(" ")).toLowerCase().includes(q);
+        });
+        if (!matched.length) continue;
+        html += `<div class="nav-group"><div class="nav-group-title">${g.label}</div>`;
+        for (const p of matched) {
+          const active = p.id === currentId ? "active" : "";
+          html += `<a href="#${p.id}" class="nav-item ${active}">${p.title}</a>`;
+        }
+        html += `</div>`;
+      }
+      nav.innerHTML = html || '<div style="color:#6B7280;font-size:0.88rem;">找不到符合的條目</div>';
+    }
+
+    function renderArticle() {
+      const id = getCurrentId();
+      const page = PAGE_MAP[id];
+      const container = document.getElementById("articleContainer");
+
+      const sourcesHtml = (page.sources || [])
+        .map(s => `<a href="#source-${s}" class="source-pill">來源 ${s}</a>`)
+        .join("");
+      const tagsHtml = (page.tags || [])
+        .map(t => `<span class="tag-pill">#${t}</span>`)
+        .join("");
+      const backlinksHtml = (page.backlinks && page.backlinks.length)
+        ? `<div class="backlinks-box">
+             <div class="backlinks-title">反向連結（引用本條目的頁面）：</div>
+             <div class="backlinks-list">
+               ${page.backlinks.map(b => `<a class="backlink-chip" href="#${b.id}">← ${b.title}</a>`).join("")}
+             </div>
+           </div>`
+        : "";
+
+      container.innerHTML = `
+        <div class="meta-bar">
+          <span class="cat-pill">${page.category_label}</span>
+          ${sourcesHtml}
+          ${tagsHtml}
+        </div>
+        ${page.summary ? `<div class="summary-callout"><strong>一句話重點：</strong>${page.summary}</div>` : ""}
+        <article>${page.html}</article>
+        ${backlinksHtml}
+      `;
+      renderSidebar(document.getElementById("searchInput").value);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.getElementById("searchInput").addEventListener("input", (e) => {
+      renderSidebar(e.target.value);
+    });
+    window.addEventListener("hashchange", renderArticle);
+    renderArticle();
+  </script>
+</body>
+</html>

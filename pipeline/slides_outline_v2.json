@@ -1,0 +1,172 @@
+{
+  "version": "v2-shift-left",
+  "title": "給台灣新手的個人理財與指數投資第一堂課",
+  "slides": [
+    {
+      "id": 1,
+      "title": "給台灣新手的個人理財與指數投資第一堂課",
+      "subtitle": "從存錢抗通膨到買下全世界，由 LLM Wiki 驅動的可溯源教學簡報",
+      "visual_type": "cover",
+      "beginner_takeaway": "理財不是預測明天漲跌，而是先築好安全網，再用低成本指數長期參與全球經濟成長。",
+      "bullets": [
+        "適用對象：完全沒有投資經驗的台灣大學生與社會新鮮人",
+        "學習主軸：緊急預備金 → 複利與通膨 → 指數 ETF → 資產配置與防詐",
+        "知識溯源：每頁皆可直接點擊標籤回到 LLM Wiki 條目與原始權威出處"
+      ],
+      "wiki_refs": ["emergency-fund", "first-step-roadmap"],
+      "source_ids": ["S2", "S6"]
+    },
+    {
+      "id": 2,
+      "title": "為什麼錢放銀行會默默變薄？通貨膨脹與購買力",
+      "subtitle": "名目金額不變，不代表你能買到的東西一樣多",
+      "visual_type": "inflation_bars",
+      "beginner_takeaway": "短期救命錢放銀行很安全，但 5 年以上的長期閒錢全放低利活存幾乎確定會輸給通膨。",
+      "bullets": [
+        "若年均通膨 2.5%，20 年後 10 萬元現金的實質購買力僅剩約 6.1 萬元",
+        "短期現金求「保本與隨時領出」；長期資金求「購買力不被侵蝕」",
+        "解方：讓長期閒置資金透過低成本指數參與全球企業獲利成長"
+      ],
+      "wiki_refs": ["inflation-purchasing-power", "emergency-fund"],
+      "source_ids": ["S2", "S6"]
+    },
+    {
+      "id": 3,
+      "title": "投資前先蓋好安全網：3～6 個月緊急預備金",
+      "subtitle": "先防守、後攻擊，才不會在股市低點被迫認賠",
+      "visual_type": "safety_layers",
+      "beginner_takeaway": "沒存緊急預備金就 All-in 投資，遇到失業或急診時會被迫賣在最低點。",
+      "bullets": [
+        "計算基準：每月「必要生活費」× 3～6 個月（收入不穩者 6～12 個月）",
+        "存放原則：高流動性、保本帳戶（高利活存或可隨時解約之短天期定存）",
+        "鐵律：緊急預備金絕對不可拿去買股票、ETF 或高波動資產"
+      ],
+      "wiki_refs": ["emergency-fund", "volatility-vs-permanent-loss"],
+      "source_ids": ["S6"]
+    },
+    {
+      "id": 4,
+      "title": "複利與費用率視覺化試算：時間與低成本的威力",
+      "subtitle": "自己動手調整月投金額、年數與報酬率，比較 0.1% vs 1.5% 費用差",
+      "visual_type": "calculator",
+      "beginner_takeaway": "時間是年輕人最大的槓桿，而低內扣費用能確保複利果實留在自己口袋。",
+      "bullets": [
+        "複利（FV = PV(1+r)^n）：投資收益再投入產生「利滾利」雪球效應",
+        "股息再投入＋低費用率（如 0.1% vs 主動基金 1.5%），30 年後資產差距驚人"
+      ],
+      "wiki_refs": ["compounding-time-value", "etf-mechanics-fees"],
+      "source_ids": ["S2", "S3"]
+    },
+    {
+      "id": 5,
+      "title": "什麼是指數投資？SPIVA 實證：15 年逾 9 成主動基金輸給大盤",
+      "subtitle": "與其花時間猜哪支股票會飆，不如直接買下整個市場的平均",
+      "visual_type": "spiva_bars",
+      "beginner_takeaway": "SPIVA 報告顯示 15 年期有 90.49% 主動型美國大型股基金落後 S&P 500。",
+      "bullets": [
+        "主動投資試圖靠選股贏大盤，卻常被高額經理費與換股成本拖累",
+        "SPIVA 統計：10 年期 83%–86%、15 年期 90.49%、20 年期逾 92% 落後大盤",
+        "被動指數投資不預測明牌，直接以低成本取得市場長期平均報酬"
+      ],
+      "wiki_refs": ["active-vs-passive", "source-S4"],
+      "source_ids": ["S2", "S4"]
+    },
+    {
+      "id": 6,
+      "title": "ETF 是什麼？一圖看懂初級／次級市場與折溢價套利",
+      "subtitle": "兼顧「像股票一樣好買賣」與「像基金一樣分散風險」",
+      "visual_type": "etf_flow",
+      "beginner_takeaway": "ETF 透過法人套利機制讓市價緊貼真實淨值，下單前仍建議先確認折溢價。",
+      "bullets": [
+        "初級市場：參與證券商（AP）以一籃子股票向投信申購或贖回 ETF",
+        "次級市場：一般投資人在券商 App 盤中依「市價」自由買賣",
+        "套利收斂：市價高於淨值（溢價）時法人會申購賣出，壓低市價貼近淨值"
+      ],
+      "wiki_refs": ["etf-mechanics-fees", "source-S1"],
+      "source_ids": ["S1"]
+    },
+    {
+      "id": 7,
+      "title": "看不見的複利殺手：內扣費用率、手續費與證交稅",
+      "subtitle": "市場漲跌無法控制，但「成本」是你能 100% 掌控的變數",
+      "visual_type": "fee_breakdown",
+      "beginner_takeaway": "買 ETF 除了看買賣手續費，更要看每日自動從淨值扣除的「內扣總費用率」。",
+      "bullets": [
+        "外扣交易成本：台灣券商手續費上限 0.1425%（常有折扣）、賣出證交稅 0.1%",
+        "內扣費用（每日自動扣）：0050 經理費約 0.0688%–0.1%、保管費約 0.025%–0.03%",
+        "Vanguard 研究：省下 1% 內扣費用，長期複利能為你保留大量最終財富"
+      ],
+      "wiki_refs": ["etf-mechanics-fees", "compounding-time-value"],
+      "source_ids": ["S1", "S3"]
+    },
+    {
+      "id": 8,
+      "title": "台灣新手標的比一比：0050 vs. 全球 ETF（VT / VWRA / VOO）",
+      "subtitle": "沒有絕對最好的標的，只有最適合你目前資金與開戶階段的工具",
+      "visual_type": "comparison_table",
+      "beginner_takeaway": "剛起步可用台幣定期定額 0050；想分散單一國家風險可配置 VT 或 VWRA。",
+      "bullets": [
+        "0050：台股前 50 大企業、台幣下單門檻最低、賣出證交稅 0.1%",
+        "VOO（0.03%）聚焦美國前 500 大；VT（0.06%）一檔涵蓋全球逾萬檔股票",
+        "VWRA（0.14%）：愛爾蘭累積型全球 ETF，美股股息預扣稅從 30% 降至 15%"
+      ],
+      "wiki_refs": ["tw-0050-vs-global-etf", "source-S3"],
+      "source_ids": ["S1", "S3"]
+    },
+    {
+      "id": 9,
+      "title": "睡得著覺的關鍵：資產配置與股債比例",
+      "subtitle": "股票負責長期衝刺，高評等債券負責在股災時穩住心態",
+      "visual_type": "allocation_donut",
+      "beginner_takeaway": "資產配置決定投資組合的波動度，選一個股市腰斬時你仍睡得著的比例。",
+      "bullets": [
+        "Bogleheads 三基金核心：本國股市 ＋ 國際股市 ＋ 綜合債券（或簡化為全球股＋債）",
+        "年輕／投資期 15 年以上：常見 80% 股票 / 20% 債券（或 90/10）",
+        "穩健型／重視抗震：常見 60% 股票 / 40% 債券，降低大跌時的心理恐慌"
+      ],
+      "wiki_refs": ["asset-allocation", "source-S5"],
+      "source_ids": ["S5"]
+    },
+    {
+      "id": 10,
+      "title": "懶人也能做到買低賣高：定期定額（DCA）與再平衡",
+      "subtitle": "用自動化紀律取代猜測高低點的情緒",
+      "visual_type": "rebalance_steps",
+      "beginner_takeaway": "每月固定扣款買進，再把新資金優先補進比例偏低的資產，就能零賣出完成再平衡。",
+      "bullets": [
+        "定期定額（DCA）：固定日期扣固定金額，市場貴買少股、市場便宜買多股",
+        "為何再平衡：避免股市大漲後股票佔比過高（如 80/20 飄移成 88/12）",
+        "新手最推作法：用「每月新資金」補齊低配部位，省稅又免手續費；或每年檢視一次"
+      ],
+      "wiki_refs": ["dca-and-rebalancing", "asset-allocation"],
+      "source_ids": ["S5", "S6"]
+    },
+    {
+      "id": 11,
+      "title": "波動 ≠ 永久虧損：台灣新手必避的 5 大誤區與防詐原則",
+      "subtitle": "認明金管會合法金融機構，遠離任何宣稱零風險高報酬的飆股群組",
+      "visual_type": "pitfalls_grid",
+      "beginner_takeaway": "帳面下跌只是暫時波動；唯有恐慌賣出、重壓單一個股或遇詐騙才會永久虧損。",
+      "bullets": [
+        "誤區 1–2：沒預備金就 All-in 或借錢槓桿、迷信飆股群組的暴富話術",
+        "誤區 3–5：頻繁短線殺進殺出、只看配息忽略總報酬與費用、高溢價搶買 ETF",
+        "法規防線：認明金管會監理之合法券商；遇上市櫃不法損害可洽投保中心（SFIPC）"
+      ],
+      "wiki_refs": ["volatility-vs-permanent-loss", "beginner-five-pitfalls"],
+      "source_ids": ["S1", "S4", "S6"]
+    },
+    {
+      "id": 12,
+      "title": "新手迷思 3 題小測驗 ＋ 今晚就能開始的 5 步行動清單",
+      "subtitle": "檢驗你的學習成果，並把知識轉化為第一步行動",
+      "visual_type": "quiz_and_roadmap",
+      "beginner_takeaway": "完成 3 題觀念檢核後，照著 5 步清單存預備金、開合法戶並設定定期定額！",
+      "bullets": [
+        "1. 算出 3–6 個月必要生活費 → 2. 存入高利活存隔離",
+        "3. 決定股債比例與標的 → 4. 金管會合法券商開戶 → 5. 設定每月定期定額"
+      ],
+      "wiki_refs": ["first-step-roadmap", "emergency-fund", "beginner-five-pitfalls"],
+      "source_ids": ["S1", "S5", "S6"]
+    }
+  ]
+}
